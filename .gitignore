@@ -1,0 +1,13 @@
+# Xilinx installer files (too large for Git)
+vivado-installer/*.tar.gz
+vivado-installer/Xilinx_*
+
+# Docker build cache
+.dockerignore
+
+# macOS
+.DS_Store
+
+# Temporary files
+*.tmp
+*.log
