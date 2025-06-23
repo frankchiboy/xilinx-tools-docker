@@ -1,7 +1,7 @@
 FROM ubuntu:jammy
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install packages required for running the vivado installer
+# Install packages required for running the vivado installer and X11 GUI
 RUN \
   ln -fs /usr/share/zoneinfo/UTC /etc/localtime && \
   apt-get update -y && \
@@ -15,6 +15,19 @@ RUN \
     patch \
     unzip \
     wget \
+    libx11-6 \
+    libxrender1 \
+    libxtst6 \
+    libxi6 \
+    libxrandr2 \
+    libxss1 \
+    libxinerama1 \
+    libxcursor1 \
+    libxcomposite1 \
+    libxdamage1 \
+    libxfixes3 \
+    libgtk-3-0 \
+    libasound2 \
     && \
   apt-get autoclean && \
   apt-get autoremove && \
