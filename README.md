@@ -97,14 +97,27 @@ docker run -it -v /path/to/your/projects:/workspace xilinx-tools-test
 ```
 
 ### 4. Long-Term Usage Recommendations
-```bash
-# Create a named container for easier reuse
-docker run -it --name zedboard-dev xilinx-tools-test
 
-# Re-enter the container
+To make the development environment reusable and uninterrupted, it is recommended to create a "persistent container" and mount the local working directory:
+
+```bash
+# Create a named container and mount the local project folder for the first time
+# Replace /path/to/your/projects with the path to your local project folder
+
+docker run --platform=linux/amd64 -it --name zedboard-dev -v /path/to/your/projects:/workspace xilinx-tools-test
+```
+
+- `--name zedboard-dev`: Specifies the container name for easier management later.
+- `-v /path/to/your/projects:/workspace`: Mounts the local project folder to `/workspace` inside the container for easy access and file synchronization.
+
+To restart and enter the same container each time:
+
+```bash
 docker start zedboard-dev
 docker exec -it zedboard-dev bash
 ```
+
+This preserves all installations, settings, and project files, ensuring an uninterrupted development workflow.
 
 ## Troubleshooting
 
